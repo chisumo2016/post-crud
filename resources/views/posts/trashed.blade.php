@@ -6,11 +6,11 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>All Posts</h4>
+                        <h4>Trashed Posts</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <a href="{{ route('posts.create') }}" class="btn btn-success mx-1">Create post</a>
-                        <a href="" class="btn btn-warning mx-1">Trashed</a>
+
+                        <a href="" class="btn btn-warning mx-1">Back</a>
                     </div>
                     </div>
 
