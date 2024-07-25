@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -19,7 +20,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create',  compact('categories'));
     }
 
     /**
@@ -27,7 +29,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => ['required', 'max:2028' ,'image'],
+            'title' => ['required', 'max:255'],
+            'category_id' => ['required', 'integer'],
+            'description' => ['required']
+        ]);
+
+        dd('success');
     }
 
     /**
@@ -35,7 +44,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**

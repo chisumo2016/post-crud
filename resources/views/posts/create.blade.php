@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="main-content mt-5">
+        {{-- Error Meessage       --}}
+        @include('errors._errors')
         <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -9,33 +11,34 @@
                         <h4>Create Posts</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <a href="{{ route('posts.index') }}" class="btn btn-success mx-1">Back</a>
-
+                        <a href="" class="btn btn-success mx-1">Back</a>
                     </div>
                 </div>
-
             </div>
+
             <div class="card-body">
-                <form action="">
+                <form action="{{ route('posts.store') }}"  method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label for="" class="form-label">Title</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control"  name="title">
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Image</label>
-                        <input type="file" class="form-control">
+                        <input type="file" class="form-control" name="image">
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Description</label>
-                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="form-label">Category</label>
-                        <select name="" id="" class="form-control">
-                            <option value="">Test 1</option>
-                            <option value="">Test 2</option>
-                            <option value="">Test 3</option>
+                        <select name="category_id" id="" class="form-control">
+                            <option value="">Select</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{$category->name}}</option>
+                            @endforeach
                         </select>
                     </div>
 
