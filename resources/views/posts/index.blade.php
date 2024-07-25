@@ -29,23 +29,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Lorem ipsum </td>
-                        <td>
-                            <img src="https://picsum.photos/200" alt="" width="80">
-                        </td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dolor est eveniet hic inventore iure laudantium minus nesciunt praesentium provident, quibusdam quis,</td>
-                        <td>News</td>
-                        <td>2-5-2023</td>
-                        <td>
-                            <a href="" class="btn btn-success btn-sm">Show</a>
+                        @foreach($posts as $post)
+                            <tr>
+                                <th scope="row">{{ $post->id }}</th>
+                                <td>{{ $post->title }}</td>
+                                <td>
+                                    <img src="{{ asset($post->image) }}" alt="" width="80">
+                                </td>
+                                <td>{{ $post->description  }}</td>
+                                <td>{{ $post->category_id  }}</td>
+                                <td>{{ $post->created_at->format('F j, Y')  }}</td>
+                                <td>
+                                    <a href="" class="btn btn-success btn-sm">Show</a>
 
-                            <a href="" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm">Delete</a>
-                        </td>
-                    </tr>
-
+                                    <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
