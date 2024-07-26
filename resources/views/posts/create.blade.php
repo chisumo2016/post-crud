@@ -11,7 +11,7 @@
                         <h4>Create Posts</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <a href="" class="btn btn-success mx-1">Back</a>
+                        <a href="{{ route('posts.index') }}" class="btn btn-success mx-1">Back</a>
                     </div>
                 </div>
             </div>

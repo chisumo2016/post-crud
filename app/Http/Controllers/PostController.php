@@ -144,4 +144,12 @@ class PostController extends Controller
         $posts = Post::onlyTrashed()->get();
         return view('posts.trashed',compact('posts'));
     }
+
+    public function restore($id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+        $post->restore();
+
+        return redirect()->back();
+    }
 }

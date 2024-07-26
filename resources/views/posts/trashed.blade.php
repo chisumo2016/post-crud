@@ -10,7 +10,8 @@
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
                         <a href="{{ route('posts.create') }}" class="btn btn-success mx-1">Create post</a>
-                        <a href="" class="btn btn-warning mx-1">Trashed</a>
+                        <a href="{{ route('posts.trashed') }}" class="btn btn-warning mx-1">Trashed</a>
+                        <a href="{{ route('posts.index') }}" class="btn btn-primary mx-1">Back</a>
                     </div>
                 </div>
 
@@ -40,14 +41,15 @@
                             <td>{{ $post->category_id  }}</td>
                             <td>{{ $post->created_at->format('F j, Y')  }}</td>
                             <td>
-                                <a href="{{ route('posts.show', $post->id)  }}" class="btn btn-success btn-sm">Show</a>
+                                <div class="d-flex">
+                                    <a href="{{ route('posts.restore', $post->id) }}" class="btn btn-success btn-sm">Restore</a>
 
-                                <a href="{{ route('posts.edit', $post->id)  }}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                    @csrf
-                                    <button class="btn-sm btn-danger btn">Delete</button>
-                                    @method('DELETE')
-                                </form>
+                                    <form action="" method="POST">
+                                        @csrf
+                                        <button class="btn-sm btn-danger btn">Delete</button>
+                                        @method('DELETE')
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
