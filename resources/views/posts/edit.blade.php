@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="main-content mt-5">
+        {{-- Error Meessage       --}}
+        @include('errors._errors')
         <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -16,26 +18,28 @@
 
             </div>
             <div class="card-body">
-                <form action="">
+                <form action="{{ route('posts.update', $post) }}" method="POST"  enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="" class="form-label">Title</label>
-                        <input type="text" class="form-control" value="{{ $post->title }}">
+                        <input type="text" name="title" class="form-control" value="{{ $post->title }}">
                     </div>
                     <div class="form-group">
                         <div class="mt-2">
                             <img src="{{asset($post->image) }}" alt="{{ $post->image }}" style="width: 100px">
                         </div>
                         <label for="" class="form-label">Image</label>
-                        <input type="file" class="form-control">
+                        <input type="file" name="image" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Description</label>
-                        <textarea name="" id="" cols="30" rows="10" class="form-control">{{ $post->description }}</textarea>
+                        <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ $post->description }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="form-label">Category</label>
-                        <select name="" id="" class="form-control">
+                        <select name="category_id" id="" class="form-control">
                             <option value="">Select </option>
                             @foreach($categories as $category)
                                 <option {{ $category->id == $post->category_id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
