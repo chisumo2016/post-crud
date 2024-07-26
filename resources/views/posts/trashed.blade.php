@@ -38,7 +38,7 @@
                                 <img src="{{ asset($post->image) }}" alt="" width="80">
                             </td>
                             <td>{{ $post->description  }}</td>
-                            <td>{{ $post->category_id  }}</td>
+                            <td>{{ $post->category->name  }}</td>
                             <td>{{ $post->created_at->format('F j, Y')  }}</td>
                             <td>
                                 <div class="d-flex">
