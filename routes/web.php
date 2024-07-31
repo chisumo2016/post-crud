@@ -20,7 +20,17 @@ Route::group(['middleware' => 'auth-check'] ,  function (){
     });
 });
 
+Route::middleware([\App\Http\Middleware\AuthCheck::class])->group(function () {
+    /*  Dashboard */
+    Route::get('/dashboard', function (){
+        return view('dashboard');
+    });
 
+    /*  Profile */
+    Route::get('/profile', function (){
+        return view('profile');
+    });
+});
 
 
 /*  Trashed  Posts*/

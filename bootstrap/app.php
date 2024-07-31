@@ -16,9 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
 
 
         /*Group Middleware / Add multiple middleware */
-        $middleware->alias([
-            'auth-check' => \App\Http\Middleware\AuthCheck::class,
-        ]);
+//        $middleware->alias([
+//            'auth-check' => \App\Http\Middleware\AuthCheck::class,
+//        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

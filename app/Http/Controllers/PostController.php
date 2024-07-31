@@ -2,15 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\AuthCheck;
 use App\Models\Category;
 use App\Models\Post;
 use File;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Storage;
 
 
-class PostController extends Controller
+class PostController extends Controller implements  HasMiddleware
 {
+
+    /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware(AuthCheck::class, only: ['create', 'show']),
+            //new Middleware('subscribed', except: ['store']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
