@@ -48,4 +48,12 @@ Route::get('/unavailable' , function (){
     return view('unavailable');
 })->name('unavailable');
 
+/*Rendering Blade Components*/
+
+Route::get('contact', function (){
+
+    $posts =  \App\Models\Post::all();
+    return view('contact', compact('posts'));
+});
+
 
