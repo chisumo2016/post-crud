@@ -11,7 +11,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(\App\Http\Middleware\CheckCountry::class);
+        /*Global Middleware*/
+        //$middleware->append(\App\Http\Middleware\CheckCountry::class);
+
+
+        /*Group Middleware / Add multiple middleware */
+        $middleware->alias([
+            'auth-check' => \App\Http\Middleware\AuthCheck::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

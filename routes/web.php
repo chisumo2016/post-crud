@@ -7,6 +7,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* Group Middleware */
+Route::group(['middleware' => 'auth-check'] ,  function (){
+    /*  Dashboard */
+    Route::get('/dashboard', function (){
+        return view('dashboard');
+    });
+
+    /*  Profile */
+    Route::get('/profile', function (){
+        return view('profile');
+    });
+});
+
+
+
+
 /*  Trashed  Posts*/
 Route::get('/posts/trash', [PostController::class, 'trashed'])->name('posts.trashed');
 
