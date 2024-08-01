@@ -77,6 +77,16 @@ Route::get('email-attachment', function (){
     dd('success');
 });
 
+/**retrieving session*/
+Route::get('get-session', function (\Illuminate\Http\Request  $request){
+    //$data = session()->all();
+
+    //$data = $request->session()->all();
+
+    $data = $request->session()->get('_token');
+
+    dd($data);
+});
 
 
 
