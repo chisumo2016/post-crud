@@ -32,11 +32,12 @@ class PostController extends Controller implements  HasMiddleware
      */
     public function index()
     {
-        //$posts = Post::paginate(5); //return collection
-        $posts = Cache::rememberForever('posts', function (){
+        //$posts = Post::paginate(3); //return collection
+        $posts = Cache::remember('posts-page-'.request('page',1),60*3, function (){
             /*return collection*/
-            return  Post::with('category')->paginate(5);
+            return  Post::with('category')->paginate(3);
         }) ;
+
         return view('posts.index', compact('posts'));
     }
 
