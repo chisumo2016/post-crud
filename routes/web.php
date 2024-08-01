@@ -57,71 +57,75 @@ Route::get('contact', function (){
 });
 
 /*Send Email**/
-//Route::get('send-email', function (){
-//    /*Mail Facedes*/
-//    \Illuminate\Support\Facades\Mail::raw('Hello world this is  a  test  mail', function ($message){
-//        $message->to('test@gmail.com')->subject('noreplay');
-//    });
-//    dd('success');
-//});
-//
-///*Send Email by class**/
-//Route::get('email-send', function (){
-//    \Illuminate\Support\Facades\Mail::send(new \App\Mail\OrderShipped);
-//    dd('success');
-//});
-//
-///*Send Email with attachment**/
-//Route::get('email-attachment', function (){
-//    \Illuminate\Support\Facades\Mail::send(new \App\Mail\OrderShipped);
-//    dd('success');
-//});
-//
-///**retrieving session*/
-//Route::get('get-session', function (\Illuminate\Http\Request  $request){
-//    //$data = session()->all();
-//
-//    $data = $request->session()->all();
-//
-//    //$data = $request->session()->get('_token');
-//
-//    dd($data);
-//});
-//
-///**store session*/
-//Route::get('save-session', function (\Illuminate\Http\Request  $request){
-//    session(['user_id' => '123']);
-//    $request->session()->put(['user_status' => 'logged_in']);
-//
-//    /**global*/
-//   session(['user_ip' => '123.23.12.01']);
-//
-//      return redirect('get-session');
-//});
-//
-///**delete session*/
-//Route::get('delete-session', function (\Illuminate\Http\Request  $request){
-//    /**via request - string/array*/
-//    //$request->session()->forget('user_id');
-//    //$request->session()->forget(['user_id','user_status']);
-//
-//    /**Session -string/array */
-//    //session()->forget('user_id');
-//    //session()->forget(['user_id','user_status']);
-//    return redirect('get-session');
-//
-//    /*Delete everything from the session*/
-//    session()->flush();
-//
-//    //$request->session()->flush();
-//    return redirect('get-session');
-//});
-//
-//
-///**flash session data*/
-//Route::get('flash-session',function (\Illuminate\Http\Request  $request){
-//    $request->session()->flash('status' ,'true');
-//
-//    return redirect('get-session');
-//});
+Route::get('send-email', function (){
+    /*Mail Facedes*/
+    \Illuminate\Support\Facades\Mail::raw('Hello world this is  a  test  mail', function ($message){
+        $message->to('test@gmail.com')->subject('noreplay');
+    });
+    dd('success');
+});
 
+/*Send Email by class**/
+Route::get('email-send', function (){
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\OrderShipped);
+    dd('success');
+});
+
+/*Send Email with attachment**/
+Route::get('email-attachment', function (){
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\OrderShipped);
+    dd('success');
+});
+
+/**retrieving session*/
+Route::get('get-session', function (\Illuminate\Http\Request  $request){
+    //$data = session()->all();
+
+    $data = $request->session()->all();
+
+    //$data = $request->session()->get('_token');
+
+    dd($data);
+});
+
+/**store session*/
+Route::get('save-session', function (\Illuminate\Http\Request  $request){
+    session(['user_id' => '123']);
+    $request->session()->put(['user_status' => 'logged_in']);
+
+    /**global*/
+   session(['user_ip' => '123.23.12.01']);
+
+      return redirect('get-session');
+});
+
+/**delete session*/
+Route::get('delete-session', function (\Illuminate\Http\Request  $request){
+    /**via request - string/array*/
+    //$request->session()->forget('user_id');
+    //$request->session()->forget(['user_id','user_status']);
+
+    /**Session -string/array */
+    //session()->forget('user_id');
+    //session()->forget(['user_id','user_status']);
+    return redirect('get-session');
+
+    /*Delete everything from the session*/
+    session()->flush();
+
+    //$request->session()->flush();
+    return redirect('get-session');
+});
+
+
+/**flash session data*/
+Route::get('flash-session',function (\Illuminate\Http\Request  $request){
+    $request->session()->flash('status' ,'true');
+
+    return redirect('get-session');
+});
+
+/**removing Data from cache*/
+Route::get('forget-cache', function (){
+   \Illuminate\Support\Facades\Cache::forget('posts');
+});
