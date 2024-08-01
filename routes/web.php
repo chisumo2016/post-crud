@@ -90,10 +90,29 @@ Route::get('get-session', function (\Illuminate\Http\Request  $request){
 
 /**store session*/
 Route::get('save-session', function (\Illuminate\Http\Request  $request){
+    session(['user_id' => '123']);
+    $request->session()->put(['user_status' => 'logged_in']);
+
     /**global*/
    session(['user_ip' => '123.23.12.01']);
 
       return redirect('get-session');
+});
+
+/**delete session*/
+Route::get('delete-session', function (\Illuminate\Http\Request  $request){
+    /**via request - string/array*/
+    //$request->session()->forget('user_id');
+    //$request->session()->forget(['user_id','user_status']);
+
+    /**Session -string/array */
+    //session()->forget('user_id');
+    //session()->forget(['user_id','user_status']);
+    return redirect('get-session');
+
+    /*Delete everything from the session*/
+    session()->flush();
+    $request->session()->flush();
 });
 
 
