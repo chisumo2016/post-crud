@@ -81,11 +81,19 @@ Route::get('email-attachment', function (){
 Route::get('get-session', function (\Illuminate\Http\Request  $request){
     //$data = session()->all();
 
-    //$data = $request->session()->all();
+    $data = $request->session()->all();
 
-    $data = $request->session()->get('_token');
+    //$data = $request->session()->get('_token');
 
     dd($data);
+});
+
+/**store session*/
+Route::get('save-session', function (\Illuminate\Http\Request  $request){
+    /**global*/
+   session(['user_ip' => '123.23.12.01']);
+
+      return redirect('get-session');
 });
 
 
