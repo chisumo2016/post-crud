@@ -112,8 +112,16 @@ Route::get('delete-session', function (\Illuminate\Http\Request  $request){
 
     /*Delete everything from the session*/
     session()->flush();
-    $request->session()->flush();
+
+    //$request->session()->flush();
+    return redirect('get-session');
 });
 
 
+/**flash session data*/
+Route::get('flash-session',function (\Illuminate\Http\Request  $request){
+    $request->session()->flash('status' ,'true');
+
+    return redirect('get-session');
+});
 
