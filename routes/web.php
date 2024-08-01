@@ -65,4 +65,11 @@ Route::get('send-email', function (){
     dd('success');
 });
 
+/*Send Email by class**/
+Route::get('email-send', function (){
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\OrderShipped);
+    dd('success');
+});
+
+
 
