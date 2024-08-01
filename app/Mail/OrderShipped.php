@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -49,6 +50,9 @@ class OrderShipped extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        /*Any files*/
+        return [
+              Attachment::fromPath(public_path('/storage/uploads/1721994197_indu.jpeg'))
+        ];
     }
 }

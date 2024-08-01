@@ -71,5 +71,12 @@ Route::get('email-send', function (){
     dd('success');
 });
 
+/*Send Email with attachment**/
+Route::get('email-attachment', function (){
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\OrderShipped);
+    dd('success');
+});
+
+
 
 
