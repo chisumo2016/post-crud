@@ -56,4 +56,13 @@ Route::get('contact', function (){
     return view('contact', compact('posts'));
 });
 
+/*Send Email**/
+Route::get('send-email', function (){
+    /*Mail Facedes*/
+    \Illuminate\Support\Facades\Mail::raw('Hello world this is  a  test  mail', function ($message){
+        $message->to('test@gmail.com')->subject('noreplay');
+    });
+    dd('success');
+});
+
 
