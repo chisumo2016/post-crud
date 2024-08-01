@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -31,7 +32,11 @@ class PostController extends Controller implements  HasMiddleware
      */
     public function index()
     {
-        $posts = Post::paginate(5); //return collection
+        //$posts = Post::paginate(5); //return collection
+        $posts = Cache::remember('posts', 60 , function (){
+            return  Post::with('category')->paginate(5);
+        }) ; //return collection
+
         return view('posts.index', compact('posts'));
     }
 
