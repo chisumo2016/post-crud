@@ -32,7 +32,7 @@ Route::get('/posts/{id}/restore', [PostController::class, 'restore'])->name('pos
 /*  Delete the record permanently*/
 Route::delete('/posts/{id}/force-delete', [PostController::class, 'forceDelete'])->name('force-delete');
 
-Route::resource('posts', PostController::class);
+Route::resource('/posts', PostController::class);
 
 Route::get('user-data', function (){
     return auth()->user();
