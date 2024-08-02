@@ -21,18 +21,24 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-/** CRUD  ROUTES*/
 
-/*  Trashed  Posts*/
-Route::get('/posts/trash', [PostController::class, 'trashed'])->name('posts.trashed');
+/** GROUP  ROUTES*/
+Route::group(['middleware' => 'auth'] , function (){
 
-/*  Restore Trashed Posts*/
-Route::get('/posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
+    /** CRUD  ROUTES*/
+    /*  Trashed  Posts*/
+    Route::get('/posts/trash', [PostController::class, 'trashed'])->name('posts.trashed');
 
-/*  Delete the record permanently*/
-Route::delete('/posts/{id}/force-delete', [PostController::class, 'forceDelete'])->name('force-delete');
+    /*  Restore Trashed Posts*/
+    Route::get('/posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
 
-Route::resource('/posts', PostController::class);
+    /*  Delete the record permanently*/
+    Route::delete('/posts/{id}/force-delete', [PostController::class, 'forceDelete'])->name('force-delete');
+
+    Route::resource('/posts', PostController::class);
+});
+
+
 
 Route::get('user-data', function (){
     return auth()->user();
