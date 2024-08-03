@@ -28,16 +28,16 @@ class AuthServiceProvider extends ServiceProvider
          * 3: delete_post
          */
 
-        Gate::define('create-post', function () {
-            return Auth::user()->is_admin;    //logged  in user details
-        });
-
-        Gate::define('edit-post', function () {
-            return Auth::user()->is_admin;    //logged  in user details
-        });
-
-        Gate::define('delete-post', function () {
-            return Auth::user()->is_admin;    //logged  in user details
-        });
+//        Gate::define('create-post', function () {
+//            return Auth::user()->is_admin;    //logged  in user details
+//        });
+//
+//        Gate::define('edit-post', function () {
+//            return Auth::user()->is_admin;    //logged  in user details
+//        });
+//
+//        Gate::define('delete-post', function () {
+//            return Auth::user()->is_admin;    //logged  in user details
+//        });
     }
 }

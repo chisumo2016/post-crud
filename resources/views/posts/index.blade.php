@@ -9,8 +9,11 @@
                         <h4>All Posts</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <a href="{{ route('posts.create') }}" class="btn btn-success mx-1">Create post</a>
-                        <a href="{{ route('posts.trashed') }}" class="btn btn-warning mx-1">Trashed</a>
+                        @can('create-post')
+                            <a href="{{ route('posts.create') }}" class="btn btn-success mx-1">Create Post</a>
+                            <a href="{{ route('posts.trashed') }}" class="btn btn-warning mx-1">Trashed</a>
+                        @endcan
+
                     </div>
                     </div>
 
@@ -42,12 +45,17 @@
                                 <td>
                                     <a href="{{ route('posts.show', $post->id)  }}" class="btn btn-success btn-sm">Show</a>
 
-                                    <a href="{{ route('posts.edit', $post->id)  }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                        @csrf
-                                          <button class="btn-sm btn-danger btn">Delete</button>
-                                        @method('DELETE')
-                                    </form>
+                                    @can('edit-post')
+                                        <a href="{{ route('posts.edit', $post->id)  }}" class="btn btn-primary btn-sm">Edit</a>
+                                    @endcan
+
+                                    @can('delete-post')
+                                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                            @csrf
+                                            <button class="btn-sm btn-danger btn">Delete</button>
+                                            @method('DELETE')
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
