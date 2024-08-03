@@ -11,22 +11,23 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 
-class PostController extends Controller implements  HasMiddleware
+class PostController extends Controller
 {
 
     /**
      * Get the middleware that should be assigned to the controller.
      */
-    public static function middleware(): array
-    {
-        return [
-            new Middleware(AuthCheck::class, only: ['create', 'show']),
-            //new Middleware('subscribed', except: ['store']),
-        ];
-    }
+//    public static function middleware(): array
+//    {
+////        return [
+////            new Middleware(AuthCheck::class, only: ['create', 'show']),
+////            //new Middleware('subscribed', except: ['store']),
+////        ];
+//    }
     /**
      * Display a listing of the resource.
      */
@@ -46,6 +47,8 @@ class PostController extends Controller implements  HasMiddleware
      */
     public function create()
     {
+        Gate::authorize('create-post'); //Check the current logged user has permission to create/vi
+
         $categories = Category::all();
         return view('posts.create',  compact('categories'));
     }
@@ -55,6 +58,8 @@ class PostController extends Controller implements  HasMiddleware
      */
     public function store(Request $request)
     {
+        $this->authorize('create-post');
+
         $request->validate([
             'image' => ['required', 'max:2028' ,'image'],
             'title' => ['required', 'max:255'],
@@ -95,6 +100,8 @@ class PostController extends Controller implements  HasMiddleware
      */
     public function edit(Post $post)
     {
+        Gate::authorize('edit-post');
+
         //$post = Post::findOrFail($id);
         $categories = Category::all();
         return view('posts.edit', compact('post','categories'));
@@ -105,6 +112,9 @@ class PostController extends Controller implements  HasMiddleware
      */
     public function update(Request $request, Post $post)
     {
+        Gate::authorize('edit-post');
+
+
        /**Validation*/
         $request->validate([
             'title' => ['required', 'max:255'],
@@ -156,6 +166,9 @@ class PostController extends Controller implements  HasMiddleware
      */
     public function destroy(Post $post)
     {
+        Gate::authorize('delete-post');
+
+
         $post->delete();
         return redirect()->route('posts.index');
     }
