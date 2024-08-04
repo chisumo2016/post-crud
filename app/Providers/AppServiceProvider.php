@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Observers\PostObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -51,5 +52,7 @@ class AppServiceProvider extends ServiceProvider
 //        Gate::define('create-post', function (User $user, Post $post){
 //            return $post->employer->user->is($user);
 //        });
+
+        Post::observe(PostObserver::class);
     }
 }
