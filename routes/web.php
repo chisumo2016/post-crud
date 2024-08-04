@@ -47,3 +47,12 @@ Route::get('/unavailable' , function (){
 Route::get('user-data', function (){
     return auth()->user();
 });
+
+
+/*Send Email**/
+Route::get('send-email', function (){
+
+        /**Dispatching  Job*/
+        \App\Jobs\SendMail::dispatch();
+    dd('Mail has been send');
+});
