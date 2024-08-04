@@ -56,3 +56,11 @@ Route::get('send-email', function (){
         \App\Jobs\SendMail::dispatch();
     dd('Mail has been send');
 });
+
+/**Event and Listerners*/
+Route::get('user-register', function (){
+    $email = 'test@gmail.com';
+  event(new \App\Events\UserRegistered($email));
+
+    dd('Message has been send');
+});
