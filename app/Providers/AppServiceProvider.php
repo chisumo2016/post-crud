@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\UserRegistered;
+use App\Listeners\SendWelcomeEmail;
 use App\Models\Post;
 use App\Models\User;
 use App\Observers\PostObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -54,5 +57,11 @@ class AppServiceProvider extends ServiceProvider
 //        });
 
         Post::observe(PostObserver::class);
+
+        /**Register the Event and Listeners*/
+        Event::listen(
+            UserRegistered::class,
+                  SendWelcomeEmail::class
+        );
     }
 }
