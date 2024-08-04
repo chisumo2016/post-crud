@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -34,16 +36,20 @@ class AppServiceProvider extends ServiceProvider
          * 3: delete_post
          */
 
-        Gate::define('create-post', function () {
-            return Auth::user()->is_admin;    //logged  in user details
-        });
+//        Gate::define('create-post', function () {
+//            return Auth::user()->is_admin;    //logged  in user details
+//        });
+//
+//        Gate::define('edit-post', function () {
+//            return Auth::user()->is_admin;    //logged  in user details
+//        });
+//
+//        Gate::define('delete0post', function () {
+//            return Auth::user()->is_admin;    //logged  in user details
+//        });
 
-        Gate::define('edit-post', function () {
-            return Auth::user()->is_admin;    //logged  in user details
-        });
-
-        Gate::define('delete0post', function () {
-            return Auth::user()->is_admin;    //logged  in user details
-        });
+//        Gate::define('create-post', function (User $user, Post $post){
+//            return $post->employer->user->is($user);
+//        });
     }
 }

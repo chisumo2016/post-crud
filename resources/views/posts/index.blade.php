@@ -9,7 +9,7 @@
                         <h4>All Posts</h4>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        @can('create-post')
+                        @can('create',App\Models\Post::class)
                             <a href="{{ route('posts.create') }}" class="btn btn-success mx-1">Create Post</a>
                             <a href="{{ route('posts.trashed') }}" class="btn btn-warning mx-1">Trashed</a>
                         @endcan
@@ -45,11 +45,11 @@
                                 <td>
                                     <a href="{{ route('posts.show', $post->id)  }}" class="btn btn-success btn-sm">Show</a>
 
-                                    @can('edit-post')
+                                    @can('update', $post)
                                         <a href="{{ route('posts.edit', $post->id)  }}" class="btn btn-primary btn-sm">Edit</a>
                                     @endcan
 
-                                    @can('delete-post')
+                                    @can('delete',  $post)
                                         <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                             @csrf
                                             <button class="btn-sm btn-danger btn">Delete</button>

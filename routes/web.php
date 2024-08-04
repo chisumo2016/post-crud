@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'] , function (){
     Route::resource('/posts', PostController::class);
 });
 
+
+
 Route::get('/unavailable' , function (){
     return view('unavailable');
 })->name('unavailable');

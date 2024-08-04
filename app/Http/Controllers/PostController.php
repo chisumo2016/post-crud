@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
@@ -47,7 +48,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create-post'); //Check the current logged user has permission to create/vi
+        Gate::authorize('create', Post::class); //Check the current logged user has permission to create/vi
 
         $categories = Category::all();
         return view('posts.create',  compact('categories'));
@@ -58,7 +59,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create-post');
+
+        Gate::authorize('create', Post::class);
 
         $request->validate([
             'image' => ['required', 'max:2028' ,'image'],
@@ -100,7 +102,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        Gate::authorize('edit-post');
+
+        Gate::authorize('edit', $post);
 
         //$post = Post::findOrFail($id);
         $categories = Category::all();
@@ -112,7 +115,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        Gate::authorize('edit-post');
+        Gate::authorize('update', $post);
 
 
        /**Validation*/
