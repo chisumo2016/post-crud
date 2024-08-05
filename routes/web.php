@@ -66,9 +66,18 @@ Route::get('user-register', function (){
 });
 
 
-/**Localization*/
+/**Localization en, hi*/
 Route::get('greeting', function (){
     return view('greetings');
 
     //dd('Message has been send');
 });
+
+/**Localization en, hi*/
+Route::get('greeting-dynamically/{locale}', function ($locale){
+
+    \Illuminate\Support\Facades\App::setLocale($locale);
+    return view('greetings');
+
+    //dd('Message has been send');
+})->name('greeting-dynamically');
