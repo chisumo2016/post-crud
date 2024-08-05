@@ -64,3 +64,11 @@ Route::get('user-register', function (){
 
     dd('Message has been send');
 });
+
+
+/**Localization*/
+Route::get('greeting', function (){
+    return view('greetings');
+
+    //dd('Message has been send');
+});
