@@ -1,5 +1,6 @@
 <?php
 
+use App\DataTables\UsersDataTable;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -8,9 +9,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard', function (UsersDataTable $dataTable) {
     $users = \App\Models\User::paginate(10);
-    return view('dashboard', compact('users'));
+    return $dataTable->render('dashboard');
+   // return view('dashboard', compact('users'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
