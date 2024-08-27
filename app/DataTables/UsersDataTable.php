@@ -47,12 +47,12 @@ class UsersDataTable extends DataTable
                     ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
-//                        Button::make('excel'),
-//                        Button::make('csv'),
-//                        Button::make('pdf'),
-//                        Button::make('print'),
-//                        Button::make('reset'),
-//                        Button::make('reload')
+                        Button::make('excel'),
+                        Button::make('csv'),
+                        Button::make('pdf'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
                     ]);
     }
 
@@ -61,7 +61,7 @@ class UsersDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        /**Database Names Column**/
+        /**Database Names Column **/
         return [
             Column::computed('action')
                   ->exportable(false)
@@ -71,7 +71,7 @@ class UsersDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
-            Column::make('role_id'),
+           
             Column::make('created_at'),
             Column::make('updated_at'),
         ];
