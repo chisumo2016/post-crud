@@ -9,6 +9,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('user/{id}/edit', function ($id){
+    return $id;
+})->name('user.edit');
+
 Route::get('/dashboard', function (UsersDataTable $dataTable) {
     $users = \App\Models\User::paginate(10);
     return $dataTable->render('dashboard');
