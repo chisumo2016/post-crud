@@ -115,12 +115,8 @@ Route::get('image', function (){
 
 
 
-Route::get('shop', function (){
-    return view('cart.show');
-});
+Route::get('shop', [CartController::class, 'shop'])->name('shop');
 
-Route::get('cart', function (){
-    return view('cart.cart');
-});
+Route::get('cart', [CartController::class, 'cart'])->name('cart');
 
 
