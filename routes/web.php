@@ -4,6 +4,7 @@ use App\DataTables\UsersDataTable;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Intervention\Image\ImageManager;
 
 Route::get('/', function () {
     return view('welcome');
@@ -88,3 +89,23 @@ Route::get('greeting-dynamically/{locale}', function ($locale){
 
     //dd('Message has been send');
 })->name('greeting-dynamically');
+
+
+/** Image Intervention*/
+Route::get('image', function (){
+    $imageManager =new ImageManager('gd'); // or 'imagick' for Imagick driver
+
+    // Open an image file
+    $image = $imageManager->read('html.jpeg');
+
+    // Crop the image to 400x400 pixels
+    $image->crop(400, 400); //crop ,fit , blur (0-100)
+    $image->blur(15);
+    $image->greyscale();
+
+    // Save the processed image as 'html1.jpeg' with 80% quality
+    //$image->save('html1.jpeg', 80); // 0 to 100
+    return $image->response();
+
+    return 'Image processing completed!';
+});
