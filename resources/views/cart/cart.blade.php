@@ -23,66 +23,64 @@
                                     <h5 class="mb-0">Cart - 2 items</h5>
                                 </div>
                                 <div class="card-body">
-
-                                    <!-- Single item -->
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                            <!-- Image -->
-                                            <div class="bg-image hover-overlay hover-zoom ripple rounded"
-                                                data-mdb-ripple-color="light">
-                                                <img src=""
-                                                    class="w-100" />
-                                                <a href="#">
-                                                    <div class="mask"
-                                                        style="background-color: rgba(251, 251, 251, 0.2)"></div>
-                                                </a>
-                                            </div>
-                                            <!-- Image -->
-                                        </div>
-
-                                        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                            <!-- Data -->
-                                            <p><strong>Name</strong></p>
-                                            <p>Color: red</p>
-                                            <p>Size: M</p>
-
-                                            <a href="#" class="btn btn-danger btn-sm mb-2 mt-3">
-                                                remove
-                                            </a>
-                                            <!-- Data -->
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                                            <!-- Quantity -->
-                                            <div class="d-flex mb-4" style="max-width: 300px">
-                                                <a href="#" class="btn btn-primary me-2">
-                                                    &#8722;
-                                                </a>
-
-                                                <div class="form-outline">
-                                                    <input id="form1" min="0" name="quantity"
-                                                        type="number" class="form-control" />
+                                    @foreach(Cart::content() as $product)
+                                        <!-- Single item -->
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                                <!-- Image -->
+                                                <div class="bg-image hover-overlay hover-zoom ripple rounded"
+                                                     data-mdb-ripple-color="light">
+                                                    <img src="{{ asset($product->options->image) }}"
+                                                         class="w-100" />
+                                                    <a href="#">
+                                                        <div class="mask"
+                                                             style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                                    </a>
                                                 </div>
-
-                                                <a href="#" class="btn btn-primary  ms-2">
-                                                    &#43;
-                                                </a>
+                                                <!-- Image -->
                                             </div>
-                                            <!-- Quantity -->
 
-                                            <!-- Price -->
-                                            <p class="text-start text-md-center">
-                                                <strong>$200</strong>
-                                            </p>
-                                            <!-- Price -->
+                                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Data -->
+                                                <p><strong>{{ $product->name }}</strong></p>
+                                                <p>Color: red</p>
+                                                <p>Size: M</p>
+
+                                                <a href="#" class="btn btn-danger btn-sm mb-2 mt-3">
+                                                    remove
+                                                </a>
+                                                <!-- Data -->
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                                <!-- Quantity -->
+                                                <div class="d-flex mb-4" style="max-width: 300px">
+                                                    <a href="#" class="btn btn-primary me-2">
+                                                        &#8722;
+                                                    </a>
+
+                                                    <div class="form-outline">
+                                                        <input id="form1" min="0" name="quantity" value="{{ $product->qty }}"
+                                                               type="number" class="form-control" />
+                                                    </div>
+
+                                                    <a href="#" class="btn btn-primary  ms-2">
+                                                        &#43;
+                                                    </a>
+                                                </div>
+                                                <!-- Quantity -->
+
+                                                <!-- Price -->
+                                                <p class="text-start text-md-center">
+                                                    <strong>$ {{ $product->price }}</strong>
+                                                </p>
+                                                <!-- Price -->
+                                            </div>
+
                                         </div>
-
-                                    </div>
-                                    <!-- Single item -->
-                                    <hr class="my-4" />
-
-
-
+                                        <!-- Single item -->
+                                        <hr class="my-4" />
+                                    @endforeach
                                 </div>
                             </div>
 

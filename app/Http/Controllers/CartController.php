@@ -16,6 +16,7 @@ class CartController extends Controller
 
     public function cart()
     {
+        //dd(Cart::content());
         return view('cart.cart');
     }
 
