@@ -107,5 +107,7 @@ Route::get('image', function (){
     //$image->save('html1.jpeg', 80); // 0 to 100
     return $image->response();
 
+    $image->filter(new \App\Helpers\ImageFilter(100));
+
     return 'Image processing completed!';
 });
