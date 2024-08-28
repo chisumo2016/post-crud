@@ -47,7 +47,7 @@
                                                 <p>Color: red</p>
                                                 <p>Size: M</p>
 
-                                                <a href="#" class="btn btn-danger btn-sm mb-2 mt-3">
+                                                <a href="{{ route('remove-product',$product->rowId) }}" class="btn btn-danger btn-sm mb-2 mt-3">
                                                     remove
                                                 </a>
                                                 <!-- Data -->

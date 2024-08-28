@@ -70,4 +70,13 @@ class CartController extends Controller
             ->back()
             ->with('success', 'Product decrement successfully');
     }
+
+    public function removeProduct($id)
+    {
+        Cart::remove($id);
+
+        return redirect()
+            ->back()
+            ->with('success', 'Product has been removed');
+    }
 }
