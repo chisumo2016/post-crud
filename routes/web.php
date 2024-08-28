@@ -121,5 +121,8 @@ Route::get('cart', [CartController::class, 'cart'])->name('cart');
 
 
 Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::get('qty-increment/{rowId}', [CartController::class, 'qtyIncrement'])->name('qty-increment');
+Route::get('qty-decrement/{rowId}', [CartController::class, 'qtyDecrement'])->name('qty-decrement');
+
 
 
