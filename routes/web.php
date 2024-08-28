@@ -1,6 +1,7 @@
 <?php
 
 use App\DataTables\UsersDataTable;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -111,3 +112,15 @@ Route::get('image', function (){
 
     return 'Image processing completed!';
 });
+
+
+
+Route::get('shop', function (){
+    return view('cart.show');
+});
+
+Route::get('cart', function (){
+    return view('cart.cart');
+});
+
+
