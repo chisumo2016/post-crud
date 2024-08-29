@@ -5,8 +5,12 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
+use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -201,6 +205,29 @@ Route::get('posts', function(){
     $posts = Post::all();
     return view('post.post', compact('posts'));
 });
+
+
+/**SOCIALITE LOGIN AUTHENTICATION*/
+Route::get('/auth/redirect', function(){
+    return Socialite::driver('github')->redirect();
+})->name('github.login');
+
+Route::get('/auth/callback', function(){
+    $user = Socialite::driver('github')->user();
+
+    /*Create new account**/
+    $user = User::firstOrCreate([
+        'email' => $user->email
+    ],[
+        'name' => $user->name,
+        'password' => bcrypt(Str::random(24))
+    ]);
+
+    Auth::login($user, true);
+
+    return redirect('/dashboard');
+});
+
 
 
 
