@@ -223,11 +223,17 @@ Route::get('/auth/callback', function(){
         'password' => bcrypt(Str::random(24))
     ]);
 
+    /*Login the user **/
     Auth::login($user, true);
 
+    /*Redirect to dashboard **/
     return redirect('/dashboard');
 });
 
+
+Route::get('/products', function () {
+    return view('index');
+});
 
 
 
