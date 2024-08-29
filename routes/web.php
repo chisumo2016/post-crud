@@ -4,6 +4,7 @@ use App\DataTables\UsersDataTable;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Intervention\Image\ImageManager;
 use Spatie\Permission\Models\Permission;
@@ -188,6 +189,17 @@ Route::get('check-permissions', function (){
         return 'user dont have permission';
     }
 
+});
+
+
+Route::get('posts', function(){
+
+   // $user = auth()->user();
+
+    //$user->assignRole('admin');
+
+    $posts = Post::all();
+    return view('post.post', compact('posts'));
 });
 
 
