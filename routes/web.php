@@ -6,6 +6,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Intervention\Image\ImageManager;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 Route::get('/', function () {
     return view('welcome');
@@ -124,6 +126,73 @@ Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name(
 Route::get('qty-increment/{rowId}', [CartController::class, 'qtyIncrement'])->name('qty-increment');
 Route::get('qty-decrement/{rowId}', [CartController::class, 'qtyDecrement'])->name('qty-decrement');
 Route::get('remove-product/{rowId}', [CartController::class, 'removeProduct'])->name('remove-product');
+
+Route::get('create-role', function (){
+    $role = Role::create(['name' => 'publisher']);
+    return $role;
+});
+
+Route::get('create-permission', function (){
+    $permission = Permission::create(['name' => 'edit articles']);
+    return $permission;
+});
+
+Route::get('add-role', function (){
+    $user = auth()->user();
+
+    $user->assignRole('writer');
+
+    return $user;
+});
+
+
+Route::get('add-permission', function (){
+    $user = auth()->user();
+
+    return $user->givePermissionTo('edit articles');
+
+    //return $user;
+});
+
+Route::get('get-permissions', function (){
+    $user = auth()->user();
+
+    return $user->permissions;
+
+
+});
+
+Route::get('get-roles', function (){
+    $user = auth()->user();
+
+    return $user->getRoleNames();
+
+    //eturn $user;
+});
+
+Route::get('can', function (){
+    $user = auth()->user();
+
+    return $user->can('edit articles');
+
+
+});
+
+Route::get('check-permissions', function (){
+    $user = auth()->user();
+
+    $checkPermission =  $user->can('edit articles');
+    if ($user->can('edit articles')){
+        return 'user have permission';
+    }else{
+        return 'user dont have permission';
+    }
+
+});
+
+
+
+
 
 
 
