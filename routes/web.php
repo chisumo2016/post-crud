@@ -2,6 +2,7 @@
 
 use App\DataTables\UsersDataTable;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\Gateways\PayPalController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Post;
@@ -235,6 +236,10 @@ Route::get('/products', function () {
     return view('index');
 });
 
+Route::post('paypal/payment', [PayPalController::class, 'payment'])->name('paypal.payment');
+
+Route::get('paypal/success',  [PayPalController::class, 'success'])->name('paypal.success');
+Route::get('paypal/cancel',  [PayPalController::class, 'cancel'])->name('paypal.cancel');
 
 
 
