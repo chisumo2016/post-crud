@@ -3,6 +3,7 @@
 use App\DataTables\UsersDataTable;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Gateways\PayPalController;
+use App\Http\Controllers\Gateways\RazorPayController;
 use App\Http\Controllers\Gateways\StripeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -248,6 +249,10 @@ Route::post('stripe/payment', [StripeController::class, 'payment'])->name('strip
 
 Route::get('stripe/success',  [StripeController::class, 'success'])->name('stripe.success');
 Route::get('stripe/cancel',   [StripeController::class, 'cancel'])->name('stripe.cancel');
+
+/**Razorpay Route**/
+Route::post('razorpay/payment', [RazorPayController::class, 'payment'])->name('razorpay.payment');
+
 
 
 
