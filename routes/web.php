@@ -253,7 +253,7 @@ Route::get('stripe/cancel',   [StripeController::class, 'cancel'])->name('stripe
 /**Razorpay Route**/
 Route::post('razorpay/payment', [RazorPayController::class, 'payment'])->name('razorpay.payment');
 
-
+/**2Checkout Route**/
 
 
 
